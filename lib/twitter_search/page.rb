@@ -8,8 +8,9 @@ class Page
   def initialize search_term, start_date, end_date, twitter_search
     output = parse_twitter_json(search_term, start_date, end_date, twitter_search.cursor)
     @cursor = output["min_position"]
-    @tweets = extract_tweets(output["items_html"]).map {|tweet| Tweet.new(tweet, twitter_search.filename)}
+    @tweets = extract_tweets(output["items_html"]).map {|tweet| Tweet.new(tweet, twitter_search)}
     is_search_finished? twitter_search
+    sleep 5
   end
   
   def parse_twitter_json search_term, start_date, end_date, cursor
