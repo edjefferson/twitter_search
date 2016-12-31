@@ -24,8 +24,7 @@ class TwitterSearch
   
   def resume_check
     check = File.file?("#{self.filename}.csv") ? 1 : 0
-    check == 0 ? CSV.open("#{self.filename}.csv", "w") : nil
-    puts check
+    check == 0 ? CSV.open("#{self.filename}.csv", "w") : (puts "resuming")
     return check
   end  
   
